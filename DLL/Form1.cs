@@ -76,12 +76,12 @@ namespace DLL
         {
             //string text = (string)loadType.GetMethod("LoadText").Invoke(loadInstance, null);//вот и разница
             string text = load_object.LoadText();
-            richTextBox1.Text = text;
+            richTextBox1.Rtf = text;
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string text = richTextBox1.Text;
+            string text = richTextBox1.Rtf;
             save_object.SaveText(text);
         }
 

@@ -9,11 +9,15 @@ namespace Load
         public string LoadText()
         {
             using OpenFileDialog dlg = new();
-            dlg.ShowDialog();
-            using StreamReader sr = new StreamReader(dlg.FileName);
-            string str = sr.ReadToEnd();
-            sr.Close();
-            return str;
+            dlg.Filter = "RTF Files|*.rtf|All Files|*.*";
+            
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                RichTextBox rtb = new RichTextBox();
+                rtb.LoadFile(dlg.FileName, RichTextBoxStreamType.RichText);
+                return rtb.Rtf;
+            }
+            return string.Empty;
         }
     }
 }

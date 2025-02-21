@@ -7,11 +7,17 @@ namespace Save
         public void SaveText(string s)
         {
             using SaveFileDialog dlg = new();
-            dlg.ShowDialog();
-            using StreamWriter sw = new StreamWriter(dlg.FileName);
-            sw.Write(s);
-            sw.Close();
-            
+            dlg.Filter = "RTF Files|*.rtf|All Files|*.*"; 
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+              
+                RichTextBox rtb = new RichTextBox();
+                rtb.Rtf = s;
+
+                
+                rtb.SaveFile(dlg.FileName, RichTextBoxStreamType.RichText);
+            }
         }
     }
 }
